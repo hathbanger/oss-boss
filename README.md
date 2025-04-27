@@ -40,7 +40,7 @@ The easiest way to get started is using Docker and Docker Compose:
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/oss-boss.git
+git clone https://github.com/hathbanger/oss-boss.git
 cd oss-boss
 ```
 
@@ -85,7 +85,7 @@ If you prefer to run without Docker:
 2. Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/oss-boss.git
+git clone https://github.com/hathbanger/oss-boss.git
 cd oss-boss
 ```
 
