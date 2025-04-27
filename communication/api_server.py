@@ -11,6 +11,7 @@ from fastapi.responses import JSONResponse
 from pydantic import BaseModel, Field
 from typing import Optional, Dict, Any, List, Union
 from agent.handler import handle_user_input
+from fastapi.middleware.cors import CORSMiddleware
 
 logger = logging.getLogger(__name__)
 
@@ -19,6 +20,14 @@ app = FastAPI(
     title="OSS BOSS API",
     description="API for analyzing GitHub repositories and NPM packages using AI agents",
     version="1.0.0",
+)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Or specify allowed origins
+    allow_credentials=True,
+    allow_methods=["*"],  # Or specify allowed methods
+    allow_headers=["*"],  # Or specify allowed headers
 )
 
 # Define Pydantic models based on the agent_request.rs structure
