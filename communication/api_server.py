@@ -183,6 +183,31 @@ async def analyze_repo(request: QueryRequest = Body(...)):
         logger.error(f"Error processing API request: {e}")
         raise HTTPException(status_code=500, detail=f"Error processing request: {str(e)}")
 
+@app.post("/webhook")
+async def receive_webhook(request: Request):
+    """
+    Endpoint to receive webhook events from external providers.
+    Accepts any content type and logs the request for further processing.
+    Security: Logs headers and payload, and provides a placeholder for signature validation.
+    """
+    try:
+        # Log headers for debugging and traceability
+        headers = dict(request.headers)
+        logger.info(f"Received webhook with headers: {headers}")
+
+        # Read raw body (can be JSON, form, or other)
+        body = await request.body()
+        logger.info(f"Received webhook payload: {body}")
+
+        # TODO: Add signature validation here for supported providers
+        # Example: Validate 'X-Hub-Signature' for GitHub, etc.
+
+        # Respond with a generic 200 OK
+        return JSONResponse(content={"status": "received"}, status_code=200)
+    except Exception as e:
+        logger.error(f"Error processing webhook: {e}")
+        raise HTTPException(status_code=400, detail=f"Webhook processing error: {str(e)}")
+
 def start_api_server():
     """Start the FastAPI server."""
     # Get configuration from environment variables or use defaults
