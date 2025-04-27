@@ -6,6 +6,14 @@
 
 OSS BOSS is a powerful AI-powered agent designed to help developers, maintainers, and managers analyze and interact with GitHub repositories and NPM packages. Whether you need to check contributor activity, analyze issues, track dependencies, or get insights about popular packages, OSS BOSS has you covered.
 
+## ⚡ Try It Now!
+
+**Want to supercharge your open source management immediately?**
+
+👉 **[Hire OSS BOSS on Formation.cloud today!](https://www.formation.cloud/)**
+
+Don't wait to revolutionize how you manage your repositories and dependencies. Get instant access to all OSS BOSS features without any setup or configuration.
+
 ## ✨ Features
 
 ### GitHub Repository Analysis
