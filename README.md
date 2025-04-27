@@ -1,4 +1,4 @@
-# OSS BOSS: Open Source Software Better Oversight & Support System
+# OSS BOSS: AI-Powered Open Source Insights & Automation
 
 ![OSS BOSS Logo](/oss-boss.png)
 
