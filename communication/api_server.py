@@ -78,7 +78,7 @@ async def health():
         uptime=time.time() - start_time
     )
 
-@app.post("/run_task", response_model=RunTaskResponse)
+@app.post("/run-task", response_model=RunTaskResponse)
 async def run_task(request: RunTaskRequest = Body(...)):
     """
     Execute a task with the OSS BOSS agent.
