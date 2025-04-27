@@ -1,6 +1,6 @@
 # OSS BOSS: Open Source Software Better Oversight & Support System
 
-![OSS BOSS Logo](https://via.placeholder.com/800x200?text=OSS+BOSS)
+![OSS BOSS Logo](/oss-boss.png)
 
 ## 🚀 Overview
 
