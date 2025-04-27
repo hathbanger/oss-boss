@@ -255,3 +255,29 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 3. Commit your changes (`git commit -m 'Add some amazing feature'`)
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
+
+## ⚙️ Makefile: Development Shortcuts
+
+A `Makefile` is included to streamline common development tasks. This allows you to quickly install dependencies, lint, format, test, manage Docker, and run interfaces with simple commands.
+
+### Common Commands
+
+```sh
+make install       # Install Python dependencies
+make lint          # Run code linters (flake8, isort)
+make format        # Format code (black, isort)
+make test          # Run tests (pytest)
+make build         # Build Docker images
+make up            # Start all services in the background (Docker Compose)
+make down          # Stop all services and remove containers
+make logs          # View Docker Compose logs
+make run-cli       # Run the CLI interface
+make run-api       # Run the API server
+make run-telegram  # Run the Telegram bot
+make run-all       # Run all interfaces locally (no Docker)
+make clean         # Remove Python cache files and __pycache__ directories
+```
+
+Run `make help` to see this list at any time.
+
+These shortcuts help ensure a consistent workflow for development, testing, and deployment. You can use them whether you are working with Docker or running locally.
