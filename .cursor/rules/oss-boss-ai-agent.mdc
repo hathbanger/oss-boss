@@ -1,0 +1,115 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Cursor Rules for OSS BOSS
+
+This rules file defines how AI assistance should work when developing the OSS BOSS project using Cursor IDE.
+
+## Project Context
+
+OSS BOSS (Open Source Software Better Oversight & Support System) is an AI-powered agent designed to help developers, maintainers, and managers analyze and interact with GitHub repositories and NPM packages. The project provides multiple interfaces including CLI, API, and Telegram bot.
+
+## Technology Stack
+
+- **Programming Language**: Python 3.8+
+- **Agent Framework**: Agno
+- **AI Model**: Claude 3.5 Sonnet
+- **Storage**: MongoDB
+- **GitHub Integration**: PyGithub
+- **APIs**: FastAPI
+- **Communication**: python-telegram-bot
+
+## Code Style Guidelines
+
+- Follow PEP 8 style guidelines
+- Use type hints for function parameters and return values
+- Maximum line length: 88 characters (Black default)
+- Use docstrings for all functions and classes (Google style)
+- Class names: PascalCase
+- Function and variable names: snake_case
+- Constants: UPPER_SNAKE_CASE
+
+## Project Structure
+
+- `main.py`: Entry point for the application
+- `agent/`: Core agent logic and tools
+  - `handler.py`: Agent initialization and user input handling
+  - `tools/`: Tool implementations for GitHub and NPM
+- `communication/`: Interface implementations
+  - `cli.py`: Command-line interface
+  - `api_server.py`: FastAPI server implementation
+  - `telegram_bot.py`: Telegram bot implementation
+
+## Coding Patterns
+
+### GitHub Tools
+
+GitHub tools should:
+- Accept a `repo_path` parameter in the format `owner/repo`
+- Return JSON-formatted strings
+- Handle exceptions and return error information as JSON
+- Include comprehensive docstrings
+
+Example:
+```python
+def tool_name(self, repo_path: str, other_param: str) -> str:
+    """
+    Description of what this tool does.
+    
+    Args:
+        repo_path: Repository path in format 'owner/repo'
+        other_param: Description of other parameter
+        
+    Returns:
+        JSON-formatted string containing results
+    """
+    try:
+        repo = self.github.get_repo(repo_path)
+        # Tool implementation
+        return json.dumps(result, indent=2)
+    except Exception as e:
+        return json.dumps({
+            "error": True,
+            "message": f"Error context: {str(e)}"
+        }, indent=2)
+```
+
+### NPM Tools
+
+NPM tools should:
+- Accept a `package_name` parameter
+- Use the requests library for API calls
+- Return JSON-formatted strings
+- Include proper error handling
+- Use timeouts for API calls
+
+### Agent Instructions
+
+When modifying agent instructions:
+- Keep instructions clear and concise
+- Use natural language, not technical jargon
+- Maintain the conversational, helpful tone
+- Ensure instructions align with the tool capabilities
+
+## When Adding Features
+
+- Update the appropriate toolkit class
+- Register new tools in the toolkit's `__init__` method
+- Add tests for new functionality
+- Update documentation
+- Ensure all environment variables are documented
+
+## Docker Development
+
+- Update Dockerfile when adding new dependencies
+- Add new environment variables to both Dockerfile and docker-compose.yml
+- Test Docker builds before committing changes
+
+## Documentation Practices
+
+- Keep README.md up to date with new features
+- Document environment variables
+- Include example queries for new functionality
+- Update installation instructions when dependencies change
