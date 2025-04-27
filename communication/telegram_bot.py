@@ -7,6 +7,7 @@ import asyncio
 from telegram import Update
 from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, ContextTypes, filters
 from agent.handler import handle_user_input
+import telegram
 
 logger = logging.getLogger(__name__)
 
@@ -49,5 +50,19 @@ def start_telegram_bot():
     application.add_handler(CommandHandler('start', start))
     application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_message))
     
+    # Add error handler for conflicts
+    application.add_error_handler(error_handler)
+    
     logger.info('Starting Telegram bot...')
     application.run_polling()
+
+async def error_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Handle errors in the telegram bot."""
+    logger.error(f"Exception while handling an update: {context.error}")
+    
+    # Handle conflict errors specifically
+    if isinstance(context.error, telegram.error.Conflict):
+        logger.critical("Telegram conflict error: Another instance is already running!")
+        # Optionally terminate this instance
+        import sys
+        sys.exit(1)
